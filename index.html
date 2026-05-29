@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Systemlaza — Sistemas Especiales de Seguridad Industrial en Monterrey. CCTV, Control de Acceso, Detección de Incendio, Voceo y Cableado Estructurado.">
+<title>Systemlaza — Sistemas Especiales de Seguridad Industrial</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#000;color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden;line-height:1.6}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+button{cursor:pointer;font-family:'Inter',sans-serif}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:#000}
+::-webkit-scrollbar-thumb{background:#A20000;border-radius:2px}
+
+@keyframes scroll-left{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+@keyframes fadeSlide{from{opacity:0}to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ANNOUNCE */
+#announce{background:#A20000;padding:9px 0;overflow:hidden;white-space:nowrap}
+.ann-track{display:inline-flex;animation:scroll-left 18s linear infinite}
+.ann-track span{font-size:11px;letter-spacing:3px;color:#fff;text-transform:uppercase;
+  padding:0 48px;font-weight:600}
+
+/* NAVBAR */
+#navbar{position:fixed;top:37px;left:0;width:100%;z-index:100;transition:all .3s}
+#navbar.scrolled{top:0;background:rgba(0,0,0,0.96);backdrop-filter:blur(20px);
+  border-bottom:1px solid #1a1a1a}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 32px;height:62px;
+  display:flex;align-items:center;justify-content:space-between}
+.nav-brand-name{font-size:16px;font-weight:800;letter-spacing:5px;color:#fff;line-height:1}
+.nav-brand-sub{font-size:8px;letter-spacing:4px;color:#A20000;
+  text-transform:uppercase;margin-top:3px;font-weight:600}
+.nav-right{display:flex;align-items:center}
+.nav-links{display:flex;gap:4px;list-style:none;margin-right:16px}
+.nav-links a{font-size:13px;letter-spacing:0.5px;color:#ffffff;
+  font-weight:600;padding:8px 13px;transition:color .2s}
+.nav-links a:hover{color:#A20000}
+.nav-cta{background:#A20000;color:#fff;padding:11px 26px;font-size:12px;
+  font-weight:700;letter-spacing:1px;text-transform:uppercase;border:none;
+  transition:background .2s;white-space:nowrap}
+.nav-cta:hover{background:#990000}
+
+/* HERO */
+#hero{position:relative;height:100vh;min-height:700px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;
+  filter:brightness(0.55) saturate(0.7);position:absolute;inset:0}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(
+  to bottom,rgba(0,0,0,0.05),rgba(0,0,0,0.2),rgba(0,0,0,0.78))}
+.hero-grid{position:absolute;inset:0;background-image:
+  linear-gradient(rgba(162,0,0,0.04) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(162,0,0,0.04) 1px,transparent 1px);
+  background-size:60px 60px}
+
+/* Logo izquierda — 300% más grande, centrado en su espacio */
+.hero-logo-left{
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:340px;
+  display:flex;align-items:center;justify-content:center;
+  animation:fadeUp .8s ease both;
+  padding-bottom:80px;
+}
+.hero-logo-left img{
+  width:300px;height:300px;object-fit:contain;
+  filter:drop-shadow(0 0 60px rgba(162,0,0,0.45))
+         drop-shadow(0 8px 40px rgba(0,0,0,0.8));
+}
+
+/* Sello aniversario derecha */
+.hero-aniv-right{
+  position:absolute;
+  right:0;top:0;bottom:0;
+  width:340px;
+  display:flex;align-items:center;justify-content:center;
+  animation:fadeUp .8s ease .2s both;
+  padding-bottom:80px;
+}
+.hero-aniv-right img{
+  width:280px;height:280px;object-fit:contain;
+  filter:drop-shadow(0 4px 28px rgba(0,0,0,0.9));
+}
+
+.hero-content{
+  position:relative;z-index:2;text-align:center;
+  padding:0 360px;width:100%;animation:fadeUp .8s ease .1s both;margin-top:40px;
+}
+.hero-eyebrow{
+  font-size:11px;letter-spacing:5px;color:#A20000;
+  text-transform:uppercase;margin-bottom:14px;
+  font-weight:700;text-shadow:0 2px 12px rgba(162,0,0,0.6);
+}
+.hero-title{font-size:clamp(42px,6vw,76px);font-weight:900;
+  color:#fff;letter-spacing:-2px;line-height:0.92;
+  text-transform:uppercase;margin-bottom:12px}
+.hero-title span{color:#A20000}
+.hero-sub{font-size:14px;font-weight:500;color:#ffffff;
+  letter-spacing:3px;margin-bottom:28px;text-transform:uppercase}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-white{background:#fff;color:#000;padding:14px 32px;
+  font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  border:none;transition:all .2s}
+.btn-white:hover{background:#A20000;color:#fff}
+.btn-outline{background:rgba(255,255,255,0.1);color:#fff;
+  padding:14px 28px;font-size:12px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;border:1px solid rgba(255,255,255,0.35);transition:all .2s}
+.btn-outline:hover{background:rgba(255,255,255,0.2)}
+.hero-stats{position:absolute;bottom:0;left:0;right:0;display:flex;
+  border-top:1px solid rgba(255,255,255,0.12);
+  background:rgba(0,0,0,0.55);backdrop-filter:blur(10px)}
+.hero-stat{flex:1;padding:18px;text-align:center;
+  border-right:1px solid rgba(255,255,255,0.08)}
+.hero-stat:last-child{border-right:none}
+.hero-stat-n{font-size:32px;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1}
+.hero-stat-l{font-size:9px;letter-spacing:3px;color:#dddddd;text-transform:uppercase;margin-top:4px}
+
+/* SECCIONES */
+.sec{padding:80px 32px}
+.sec-inner{max-width:1200px;margin:0 auto}
+.sec-tag{font-size:10px;letter-spacing:4px;color:#A20000;
+  text-transform:uppercase;font-weight:700;margin-bottom:10px;
+  display:flex;align-items:center;gap:10px}
+.sec-tag::before{content:'';width:28px;height:2px;background:#A20000}
+.sec-title{font-size:clamp(28px,4vw,46px);font-weight:900;
+  color:#ffffff;letter-spacing:-1.5px;line-height:1.05;
+  margin-bottom:16px;text-transform:uppercase}
+.sec-title span{color:#A20000}
+.sec-desc{font-size:15px;color:#dddddd;line-height:1.8;font-weight:300;max-width:580px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,#2a2a2a,transparent)}
+
+/* EMPRESA */
+#empresa{background:#0a0a0a}
+.empresa-mv{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px}
+.mv-card{background:#141414;border:1px solid #2a2a2a;border-left:3px solid #A20000;padding:28px 24px}
+.mv-label{font-size:9px;letter-spacing:3px;color:#A20000;
+  text-transform:uppercase;font-weight:700;margin-bottom:12px}
+.mv-text{font-size:13px;color:#dddddd;line-height:1.8;font-weight:300}
+.valores-wrap{display:flex;flex-wrap:wrap;gap:10px}
+.valor-chip{padding:10px 22px;background:#A20000;border:2px solid #A20000;font-size:11px;letter-spacing:2px;color:#ffffff;text-transform:uppercase;font-weight:700}
+
+/* SERVICIOS */
+#servicios{background:#000}
+.serv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:40px}
+.serv-card{display:flex;flex-direction:column;border-left:3px solid #A20000;background:rgba(255,255,255,0.04);padding:26px 28px;transition:background .25s,transform .25s}
+.serv-card:hover{background:rgba(162,0,0,0.08);transform:translateY(-2px)}
+.serv-card .sc-top{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:12px}
+.serv-card .sc-title{font-size:17px;font-weight:700;color:#ffffff;line-height:1.3}
+.serv-card .sc-num{font-size:12px;letter-spacing:2px;color:#A20000;font-weight:700;flex-shrink:0}
+.serv-card .sc-desc{font-size:13px;color:#bdbdbd;line-height:1.75}
+@media(max-width:900px){.serv-grid{grid-template-columns:1fr}}
+.serv-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:stretch;margin-top:40px}
+.serv-img{position:relative;overflow:hidden;height:520px}
+.serv-img img{width:100%;height:100%;object-fit:cover;
+  object-position:center top;filter:brightness(0.75) saturate(0.9)}
+.serv-img-overlay{position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(0,0,0,0.6),transparent)}
+
+/* PROYECTOS */
+#proyectos{background:#0a0a0a}
+.proy-grid{display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2px;background:#2a2a2a;margin-top:40px}
+.proy-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+
+/* TRABAJOS */
+#trabajos{background:#000}
+.trab-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#1a1a1a;margin-top:40px}
+.trab-col{background:#0a0a0a}
+.trab-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:36px}
+
+/* CLIENTES */
+#clientes{background:#0a0a0a;padding:64px 0}
+.cli-header{text-align:center;margin-bottom:36px;padding:0 32px}
+.cli-title-row{display:flex;align-items:center;gap:16px;justify-content:center;margin-bottom:8px}
+.cli-line{flex:1;height:1px;background:rgba(162,0,0,0.5);max-width:160px}
+.cli-title{font-size:13px;letter-spacing:5px;color:#A20000;
+  text-transform:uppercase;font-weight:700}
+.cli-diamond{font-size:16px;color:#A20000;text-align:center;display:block;margin-bottom:12px}
+.cli-sub{font-size:11px;letter-spacing:3px;color:#aaaaaa;text-transform:uppercase}
+.car-outer{position:relative;overflow:hidden}
+.car-fl{position:absolute;left:0;top:0;bottom:0;width:120px;
+  background:linear-gradient(to right,#0a0a0a,transparent);z-index:2;pointer-events:none}
+.car-fr{position:absolute;right:0;top:0;bottom:0;width:120px;
+  background:linear-gradient(to left,#0a0a0a,transparent);z-index:2;pointer-events:none}
+
+/* CONTACTO */
+#contacto{background:#000}
+.cnt-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:48px}
+.ci{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid #1a1a1a}
+.ci:last-child{border-bottom:none}
+.ci-icon{width:42px;height:42px;background:rgba(162,0,0,0.12);
+  border:1px solid rgba(162,0,0,0.3);display:flex;align-items:center;
+  justify-content:center;font-size:17px;flex-shrink:0}
+.ci-lbl{font-size:9px;letter-spacing:3px;color:#A20000;
+  text-transform:uppercase;font-weight:700;margin-bottom:4px}
+.ci-val{font-size:14px;color:#eeeeee;font-weight:500}
+.ci-sub{font-size:11px;color:#cccccc;margin-top:2px}
+.wa-big{width:100%;margin-top:24px;background:#25D366;color:#fff;
+  padding:16px;font-size:14px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;border:none;
+  display:flex;align-items:center;justify-content:center;gap:10px;transition:background .2s}
+.wa-big:hover{background:#20b558}
+.form-box{background:#0a0a0a;border:1px solid #1a1a1a;padding:32px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.ffull{margin-bottom:14px}
+.flbl{font-size:9px;letter-spacing:2px;color:#aaaaaa;
+  text-transform:uppercase;font-weight:600;margin-bottom:6px;display:block}
+.fin{background:#000;border:1px solid #2a2a2a;color:#fff;
+  padding:12px 16px;font-size:13px;font-family:'Inter',sans-serif;
+  outline:none;transition:border-color .2s;width:100%}
+.fin:focus{border-color:#A20000}
+.fin::placeholder{color:#555}
+select.fin option{background:#111}
+.fsub{width:100%;background:#A20000;color:#fff;padding:14px;
+  font-size:12px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;border:none;transition:background .2s;margin-top:6px}
+.fsub:hover{background:#990000}
+
+/* CTA */
+#cta{background:#0a0a0a;padding:80px 32px;text-align:center;
+  position:relative;overflow:hidden;border-top:1px solid #1a1a1a}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:700px;height:350px;
+  background:radial-gradient(ellipse,rgba(162,0,0,0.12),transparent 70%);
+  pointer-events:none}
+.cta-inner{position:relative;max-width:680px;margin:0 auto}
+.cta-lbl{font-size:10px;letter-spacing:4px;color:#A20000;
+  text-transform:uppercase;font-weight:700;margin-bottom:16px}
+.cta-title{font-size:clamp(30px,5vw,52px);font-weight:900;
+  color:#ffffff;line-height:1.05;letter-spacing:-1.5px;margin-bottom:14px}
+.cta-title span{color:#A20000}
+.cta-desc{font-size:15px;color:#cccccc;line-height:1.7;margin-bottom:32px;font-weight:300}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cta-wa{padding:16px 34px;background:#25D366;color:#fff;font-size:14px;
+  font-weight:700;border:none;display:flex;align-items:center;gap:8px;transition:background .2s}
+.cta-wa:hover{background:#20b558}
+.cta-sec{padding:16px 28px;border:1px solid rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.06);color:#fff;font-size:14px;transition:all .2s}
+.cta-sec:hover{background:rgba(255,255,255,0.14)}
+
+/* FOOTER */
+footer{background:#050505;border-top:1px solid #1a1a1a;padding:40px 32px 24px}
+.foot-inner{max-width:1200px;margin:0 auto}
+.foot-top{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:40px;margin-bottom:32px}
+.foot-brand{font-size:16px;font-weight:800;letter-spacing:4px;color:#fff;margin-bottom:4px}
+.foot-sub{font-size:8px;letter-spacing:3px;color:#A20000;text-transform:uppercase;margin-bottom:12px}
+.foot-desc{font-size:12px;color:#cccccc;line-height:1.7;font-weight:300}
+.foot-col-t{font-size:9px;letter-spacing:3px;color:#dddddd;
+  text-transform:uppercase;font-weight:700;margin-bottom:14px}
+.foot-links{display:flex;flex-direction:column;gap:8px}
+.foot-links a{font-size:12px;color:#aaaaaa;transition:color .2s}
+.foot-links a:hover{color:#A20000}
+.foot-ci{font-size:12px;color:#aaaaaa;margin-bottom:8px;display:flex;gap:8px}
+.foot-bot{border-top:1px solid #111;padding-top:20px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.foot-copy{font-size:10px;letter-spacing:1px;color:#333}
+.foot-legal{font-size:10px;color:#222}
+
+/* WA FLOAT */
+#wa-float{position:fixed;bottom:28px;right:28px;width:58px;height:58px;
+  background:#25D366;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;z-index:999;box-shadow:0 4px 24px rgba(37,211,102,0.55);
+  transition:transform .2s}
+#wa-float:hover{transform:scale(1.1)}
+#wa-float svg{width:30px;height:30px;fill:#fff}
+
+/* BACK TOP */
+#btop{position:fixed;bottom:100px;right:32px;width:40px;height:40px;
+  background:rgba(162,0,0,0.15);border:1px solid rgba(162,0,0,0.3);
+  color:#A20000;font-size:18px;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .2s;opacity:0}
+#btop.vis{opacity:1}
+#btop:hover{background:#A20000;color:#fff}
+
+@media(max-width:900px){
+  .nav-links{display:none}
+  .hero-logo-left,.hero-aniv-right{width:200px}
+  .hero-logo-left img{width:180px;height:180px}
+  .hero-aniv-right img{width:160px;height:160px}
+  .hero-content{padding:0 220px}
+  .empresa-mv,.serv-layout,.cnt-grid,.foot-top,.trab-grid{grid-template-columns:1fr}
+  .proy-grid{grid-template-columns:1fr}
+  .proy-cards{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .hero-logo-left,.hero-aniv-right{display:none}
+  .hero-content{padding:0 20px}
+  .sec{padding:56px 20px}
+  .nav-inner{padding:0 20px}
+  .proy-cards{grid-template-columns:1fr}
+  .trab-cards{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<template id="__bundler_thumbnail" data-bg-color="#0a0a0a">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0a0a0a"/>
+    <path d="M600 250 L760 330 V450 C760 540 690 600 600 630 C510 600 440 540 440 450 V330 Z" fill="none" stroke="#A20000" stroke-width="14"/>
+    <text x="600" y="490" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="150" fill="#ffffff" text-anchor="middle">S</text>
+    <text x="600" y="700" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="46" letter-spacing="14" fill="#ffffff" text-anchor="middle">SYSTEMLAZA</text>
+  </svg>
+</template>
+
+<!-- BANNER ROJO UNIFORME -->
+<div id="announce">
+  <div class="ann-track">
+    <span>🦅 Celebrando nuestro 10° Aniversario · Systemlaza S.A. de C.V. · 2016 – 2026 · Monterrey, Nuevo León ·</span>
+    <span>🦅 Celebrando nuestro 10° Aniversario · Systemlaza S.A. de C.V. · 2016 – 2026 · Monterrey, Nuevo León ·</span>
+    <span>🦅 Celebrando nuestro 10° Aniversario · Systemlaza S.A. de C.V. · 2016 – 2026 · Monterrey, Nuevo León ·</span>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div>
+      <div class="nav-brand-name">SYSTEMLAZA</div>
+      <div class="nav-brand-sub">Security Systems</div>
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#empresa">Empresa</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#clientes">Clientes</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <button class="nav-cta"
+        onclick="window.open('https://wa.me/5218119764178?text=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20una%20cotizaci%C3%B3n','_blank')">
+        Cotizar Ahora
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"><img src="images/hero-bg.jpg" alt="Systemlaza instalaciones"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+
+  <!-- Logo ave — izquierda centrado en su columna, 300% más grande -->
+  <div class="hero-logo-left">
+    <img src="images/logo.png" alt="Logo Systemlaza">
+  </div>
+
+  <!-- Sello aniversario — derecha centrado -->
+  <div class="hero-aniv-right">
+    <img src="images/aniversario.png" alt="10 Aniversario Systemlaza">
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Sistemas Especiales de Seguridad Industrial</div>
+    <h1 class="hero-title">SYSTEM<span>LAZA</span></h1>
+    <p class="hero-sub">Protección industrial de vanguardia</p>
+    <div class="hero-btns">
+      <button class="btn-white"
+        onclick="window.open('https://wa.me/5218119764178?text=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20una%20cotizaci%C3%B3n','_blank')">
+        Solicitar Cotización
+      </button>
+      <button class="btn-outline"
+        onclick="document.getElementById('proyectos').scrollIntoView({behavior:'smooth'})">
+        Ver Proyectos
+      </button>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-n">10+</div><div class="hero-stat-l">Años de experiencia</div></div>
+    <div class="hero-stat"><div class="hero-stat-n">50+</div><div class="hero-stat-l">Proyectos realizados</div></div>
+    <div class="hero-stat"><div class="hero-stat-n">8+</div><div class="hero-stat-l">Clientes industriales</div></div>
+    <div class="hero-stat"><div class="hero-stat-n">100%</div><div class="hero-stat-l">Garantía total</div></div>
+  </div>
+</section>
+
+<!-- EMPRESA — sin Datos Generales, Misión/Visión centradas, valores abajo -->
+<section id="empresa" class="sec">
+  <div class="sec-inner">
+    <div style="text-align:center;margin-bottom:48px">
+      <div class="sec-tag" style="justify-content:center">Quiénes somos</div>
+      <h2 class="sec-title" style="text-align:center">SYSTEMLAZA<br><span>S.A. DE C.V.</span></h2>
+      <p style="font-size:16px;color:#dddddd;line-height:1.9;font-weight:300;
+        max-width:720px;margin:0 auto">
+        Somos una empresa especializada en el suministro e instalación de Sistemas Especiales
+        de Seguridad para el sector industrial. Con más de 10 años de trayectoria protegemos
+        las operaciones más exigentes del norte de México con tecnología de primer nivel
+        y personal altamente capacitado.
+      </p>
+    </div>
+
+    <!-- Misión y Visión centradas y uniformes -->
+    <div class="empresa-mv">
+      <div class="mv-card">
+        <div class="mv-label">Misión</div>
+        <div class="mv-text">Brindar plena satisfacción a nuestros clientes mediante soluciones integrales y profesionales en sistemas especiales de seguridad, empleando equipos y materiales de primer nivel, con personal comprometido con la integridad, la calidad y la mejora continua — garantizando cada proyecto en tiempo, forma y con respaldo total en equipos y mano de obra.</div>
+      </div>
+      <div class="mv-card">
+        <div class="mv-label">Visión</div>
+        <div class="mv-text">Consolidarnos como la empresa líder a nivel nacional en sistemas especiales de seguridad, ofreciendo no solo tecnología de vanguardia, sino la certidumbre y tranquilidad que nuestros clientes merecen.</div>
+      </div>
+    </div>
+
+    <!-- Valores — abajo, centrados -->
+    <div style="text-align:center;margin-top:8px">
+      <div style="font-size:10px;letter-spacing:4px;color:#A20000;text-transform:uppercase;
+        font-weight:700;margin-bottom:20px">Nuestros valores</div>
+      <div class="valores-wrap" style="justify-content:center">
+        <div class="valor-chip">Calidad</div><div class="valor-chip">Integridad</div><div class="valor-chip">Compromiso</div><div class="valor-chip">Mejora continua</div><div class="valor-chip">Puntualidad</div><div class="valor-chip">Respaldo total</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="sec">
+  <div class="sec-inner">
+    <div class="sec-tag">Nuestros servicios</div>
+    <h2 class="sec-title">SOLUCIONES<br><span>INTEGRALES</span></h2>
+    <p class="sec-desc" style="margin-top:24px;max-width:760px">
+      Diseñamos, suministramos e instalamos sistemas especiales de seguridad adaptados
+      a cada industria. Trabajamos con las marcas más reconocidas y garantizamos
+      cada proyecto en tiempo y forma.
+    </p>
+    <div class="serv-grid"><div class="serv-card"><div class="sc-top"><div class="sc-title">Detección de Incendio</div><span class="sc-num">01</span></div><div class="sc-desc">Diseño, suministro e instalación de sistemas de detección temprana y alarma contra incendio para instalaciones industriales. Garantizamos la protección de vidas y activos.</div></div><div class="serv-card"><div class="sc-top"><div class="sc-title">Videovigilancia CCTV</div><span class="sc-num">02</span></div><div class="sc-desc">Instalación de sistemas de monitoreo con cámaras HD de alta resolución para vigilancia perimetral e interior. Cobertura total de su planta las 24 horas.</div></div><div class="serv-card"><div class="sc-top"><div class="sc-title">Control de Acceso Personal y Vehicular</div><span class="sc-num">03</span></div><div class="sc-desc">Sistemas biométricos, lectores de tarjeta y control vehicular para gestionar y restringir el acceso a zonas críticas de su empresa.</div></div><div class="serv-card"><div class="sc-top"><div class="sc-title">Voceo y Avisos Públicos</div><span class="sc-num">04</span></div><div class="sc-desc">Sistemas de comunicación de emergencia, evacuación y avisos generales en tiempo real para toda la instalación industrial.</div></div><div class="serv-card"><div class="sc-top"><div class="sc-title">Sistema de Alarma Perimetral</div><span class="sc-num">05</span></div><div class="sc-desc">Detección de intrusos y protección del perímetro industrial con sensores de última generación y alertas automáticas.</div></div><div class="serv-card"><div class="sc-top"><div class="sc-title">Cableado Estructurado</div><span class="sc-num">06</span></div><div class="sc-desc">Infraestructura certificada de red para voz, datos y sistemas de seguridad integrados. Instalación ordenada y documentada.</div></div><div class="serv-card"><div class="sc-top"><div class="sc-title">Punto a Punto</div><span class="sc-num">07</span></div><div class="sc-desc">Enlace de radiofrecuencia para comunicación inalámbrica entre puntos remotos de su instalación. Ideal para transmisión de video, datos y voz sin necesidad de cableado físico entre edificios o áreas distantes.</div></div><div class="serv-card"><div class="sc-top"><div class="sc-title">BMS — Building Management System</div><span class="sc-num">08</span></div><div class="sc-desc">Plataforma de software y hardware que controla, monitorea y automatiza las instalaciones mecánicas, eléctricas y tecnológicas de un edificio. Optimiza la eficiencia energética y garantiza el confort y la seguridad del inmueble.</div></div></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROYECTOS: nombre en foto, servicios debajo fuera -->
+<section id="proyectos" class="sec">
+  <div class="sec-inner">
+    <div class="sec-tag">Proyectos relevantes</div>
+    <h2 class="sec-title">RESULTADOS QUE<br><span>GENERAN CONFIANZA</span></h2>
+    <p class="sec-desc">Instalaciones reales realizadas por nuestro equipo de especialistas.</p>
+    <div class="proy-cards">
+<div style="background:#111;border:1px solid #2a2a2a;overflow:hidden;transition:border-color .25s" onmouseover="this.style.borderColor='#A20000'" onmouseout="this.style.borderColor='#2a2a2a'"><div style="position:relative;width:100%;padding-top:75%;overflow:hidden;background:#1a1a1a"><div class="slide-kawasaki_motores_de_mexico" style="display:block;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Kawasaki/1.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><div class="slide-kawasaki_motores_de_mexico" style="display:none;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Kawasaki/2.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><div class="slide-kawasaki_motores_de_mexico" style="display:none;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Kawasaki/3.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><div class="slide-kawasaki_motores_de_mexico" style="display:none;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Kawasaki/4.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><div class="slide-kawasaki_motores_de_mexico" style="display:none;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Kawasaki/5.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><div class="slide-kawasaki_motores_de_mexico" style="display:none;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Kawasaki/6.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><button onclick="prevSlide('kawasaki_motores_de_mexico')" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);border:none;color:#fff;width:32px;height:32px;font-size:18px;cursor:pointer;z-index:5;border-radius:50%">‹</button><button onclick="nextSlide('kawasaki_motores_de_mexico')" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);border:none;color:#fff;width:32px;height:32px;font-size:18px;cursor:pointer;z-index:5;border-radius:50%">›</button><div style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;align-items:center;z-index:5"><div onclick="goSlide('kawasaki_motores_de_mexico',0)" id="dot-kawasaki_motores_de_mexico-0" style="width:10px;height:10px;border-radius:50%;background:#fff;cursor:pointer;transition:all .25s;margin:0 3px"></div><div onclick="goSlide('kawasaki_motores_de_mexico',1)" id="dot-kawasaki_motores_de_mexico-1" style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all .25s;margin:0 3px"></div><div onclick="goSlide('kawasaki_motores_de_mexico',2)" id="dot-kawasaki_motores_de_mexico-2" style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all .25s;margin:0 3px"></div><div onclick="goSlide('kawasaki_motores_de_mexico',3)" id="dot-kawasaki_motores_de_mexico-3" style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all .25s;margin:0 3px"></div><div onclick="goSlide('kawasaki_motores_de_mexico',4)" id="dot-kawasaki_motores_de_mexico-4" style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all .25s;margin:0 3px"></div><div onclick="goSlide('kawasaki_motores_de_mexico',5)" id="dot-kawasaki_motores_de_mexico-5" style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all .25s;margin:0 3px"></div></div><div id="count-kawasaki_motores_de_mexico" style="position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.7);color:#fff;font-size:10px;padding:3px 9px;letter-spacing:1px;z-index:5">1 / 6</div></div><div style="padding:16px 18px;background:#0d0d0d;border-top:1px solid #1a1a1a"><div style="font-size:16px;font-weight:800;color:#ffffff;margin-bottom:10px">Kawasaki Motores de México</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">CCTV</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Control de Acceso</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Cableado</span></div></div></div><div style="background:#111;border:1px solid #2a2a2a;overflow:hidden;transition:border-color .25s" onmouseover="this.style.borderColor='#A20000'" onmouseout="this.style.borderColor='#2a2a2a'"><div style="position:relative;width:100%;padding-top:75%;overflow:hidden;background:#1a1a1a"><div class="slide-panasonic_mty" style="display:block;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Panasonic/1.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><div class="slide-panasonic_mty" style="display:none;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Panasonic/2.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><div class="slide-panasonic_mty" style="display:none;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Panasonic/3.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><div class="slide-panasonic_mty" style="display:none;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Panasonic/4.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><div class="slide-panasonic_mty" style="display:none;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Panasonic/5.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><div class="slide-panasonic_mty" style="display:none;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Panasonic/6.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><div class="slide-panasonic_mty" style="display:none;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Panasonic/7.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><div class="slide-panasonic_mty" style="display:none;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Panasonic/8.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><button onclick="prevSlide('panasonic_mty')" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);border:none;color:#fff;width:32px;height:32px;font-size:18px;cursor:pointer;z-index:5;border-radius:50%">‹</button><button onclick="nextSlide('panasonic_mty')" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);border:none;color:#fff;width:32px;height:32px;font-size:18px;cursor:pointer;z-index:5;border-radius:50%">›</button><div style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;align-items:center;z-index:5"><div onclick="goSlide('panasonic_mty',0)" id="dot-panasonic_mty-0" style="width:10px;height:10px;border-radius:50%;background:#fff;cursor:pointer;transition:all .25s;margin:0 3px"></div><div onclick="goSlide('panasonic_mty',1)" id="dot-panasonic_mty-1" style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all .25s;margin:0 3px"></div><div onclick="goSlide('panasonic_mty',2)" id="dot-panasonic_mty-2" style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all .25s;margin:0 3px"></div><div onclick="goSlide('panasonic_mty',3)" id="dot-panasonic_mty-3" style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all .25s;margin:0 3px"></div><div onclick="goSlide('panasonic_mty',4)" id="dot-panasonic_mty-4" style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all .25s;margin:0 3px"></div><div onclick="goSlide('panasonic_mty',5)" id="dot-panasonic_mty-5" style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all .25s;margin:0 3px"></div><div onclick="goSlide('panasonic_mty',6)" id="dot-panasonic_mty-6" style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all .25s;margin:0 3px"></div><div onclick="goSlide('panasonic_mty',7)" id="dot-panasonic_mty-7" style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all .25s;margin:0 3px"></div></div><div id="count-panasonic_mty" style="position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.7);color:#fff;font-size:10px;padding:3px 9px;letter-spacing:1px;z-index:5">1 / 8</div></div><div style="padding:16px 18px;background:#0d0d0d;border-top:1px solid #1a1a1a"><div style="font-size:16px;font-weight:800;color:#ffffff;margin-bottom:10px">Panasonic Automotive Monterrey</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Detección de Incendio</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Cableado</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Control de Acceso</span></div></div></div><div style="background:#111;border:1px solid #2a2a2a;overflow:hidden;transition:border-color .25s" onmouseover="this.style.borderColor='#A20000'" onmouseout="this.style.borderColor='#2a2a2a'"><div style="position:relative;width:100%;padding-top:75%;overflow:hidden;background:#1a1a1a"><div class="slide-katsushiro" style="display:block;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Katsushiro/1.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><div class="slide-katsushiro" style="display:none;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Katsushiro/2.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><div class="slide-katsushiro" style="display:none;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Katsushiro/3.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><div class="slide-katsushiro" style="display:none;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Katsushiro/4.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><div class="slide-katsushiro" style="display:none;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Katsushiro/5.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><div class="slide-katsushiro" style="display:none;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Katsushiro/6.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><div class="slide-katsushiro" style="display:none;position:absolute;inset:0;animation:fadeSlide .5s ease;background:#1a1a1a"><img src="images/proyectos/Katsushiro/7.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block"></div><button onclick="prevSlide('katsushiro')" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);border:none;color:#fff;width:32px;height:32px;font-size:18px;cursor:pointer;z-index:5;border-radius:50%">‹</button><button onclick="nextSlide('katsushiro')" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);border:none;color:#fff;width:32px;height:32px;font-size:18px;cursor:pointer;z-index:5;border-radius:50%">›</button><div style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;align-items:center;z-index:5"><div onclick="goSlide('katsushiro',0)" id="dot-katsushiro-0" style="width:10px;height:10px;border-radius:50%;background:#fff;cursor:pointer;transition:all .25s;margin:0 3px"></div><div onclick="goSlide('katsushiro',1)" id="dot-katsushiro-1" style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all .25s;margin:0 3px"></div><div onclick="goSlide('katsushiro',2)" id="dot-katsushiro-2" style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all .25s;margin:0 3px"></div><div onclick="goSlide('katsushiro',3)" id="dot-katsushiro-3" style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all .25s;margin:0 3px"></div><div onclick="goSlide('katsushiro',4)" id="dot-katsushiro-4" style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all .25s;margin:0 3px"></div><div onclick="goSlide('katsushiro',5)" id="dot-katsushiro-5" style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all .25s;margin:0 3px"></div><div onclick="goSlide('katsushiro',6)" id="dot-katsushiro-6" style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all .25s;margin:0 3px"></div></div><div id="count-katsushiro" style="position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.7);color:#fff;font-size:10px;padding:3px 9px;letter-spacing:1px;z-index:5">1 / 7</div></div><div style="padding:16px 18px;background:#0d0d0d;border-top:1px solid #1a1a1a"><div style="font-size:16px;font-weight:800;color:#ffffff;margin-bottom:10px">Katsushiro de México</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Detección de Incendio</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">CCTV</span></div></div></div>
+</div></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TRABAJOS REALIZADOS -->
+<section id="trabajos" class="sec">
+  <div class="sec-inner">
+    <div class="sec-tag">Historial de proyectos</div>
+    <h2 class="sec-title">TRABAJOS<br><span>REALIZADOS</span></h2>
+    <p class="sec-desc" style="margin-bottom:32px">
+      Más de 10 años ejecutando proyectos en empresas industriales líderes.
+    </p>
+    <div class="trab-cards"><div style="padding:20px 24px;border:1px solid #1e1e1e;background:#0d0d0d;transition:border-color .2s" onmouseover="this.style.borderColor='#A20000'" onmouseout="this.style.borderColor='#1e1e1e'"><div style="display:flex;align-items:flex-start;gap:12px"><div style="width:7px;height:7px;border-radius:50%;background:#A20000;flex-shrink:0;margin-top:8px"></div><div style="flex:1"><div style="font-size:16px;font-weight:700;color:#ffffff;margin-bottom:10px">Hazama Ando · Tatsumi de México</div><div style="display:flex;gap:7px;flex-wrap:wrap"><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Voceo</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Detección de Incendio</span></div></div></div></div><div style="padding:20px 24px;border:1px solid #1e1e1e;background:#0d0d0d;transition:border-color .2s" onmouseover="this.style.borderColor='#A20000'" onmouseout="this.style.borderColor='#1e1e1e'"><div style="display:flex;align-items:flex-start;gap:12px"><div style="width:7px;height:7px;border-radius:50%;background:#A20000;flex-shrink:0;margin-top:8px"></div><div style="flex:1"><div style="font-size:16px;font-weight:700;color:#ffffff;margin-bottom:10px">Hazama Ando · Mitsuba de México</div><div style="display:flex;gap:7px;flex-wrap:wrap"><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Voceo</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Detección de Incendio</span></div></div></div></div><div style="padding:20px 24px;border:1px solid #1e1e1e;background:#0d0d0d;transition:border-color .2s" onmouseover="this.style.borderColor='#A20000'" onmouseout="this.style.borderColor='#1e1e1e'"><div style="display:flex;align-items:flex-start;gap:12px"><div style="width:7px;height:7px;border-radius:50%;background:#A20000;flex-shrink:0;margin-top:8px"></div><div style="flex:1"><div style="font-size:16px;font-weight:700;color:#ffffff;margin-bottom:10px">Nippon Seiki de México</div><div style="display:flex;gap:7px;flex-wrap:wrap"><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Incendio</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Voceo</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Cableado</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Control de Acceso</span></div></div></div></div><div style="padding:20px 24px;border:1px solid #1e1e1e;background:#0d0d0d;transition:border-color .2s" onmouseover="this.style.borderColor='#A20000'" onmouseout="this.style.borderColor='#1e1e1e'"><div style="display:flex;align-items:flex-start;gap:12px"><div style="width:7px;height:7px;border-radius:50%;background:#A20000;flex-shrink:0;margin-top:8px"></div><div style="flex:1"><div style="font-size:16px;font-weight:700;color:#ffffff;margin-bottom:10px">Castle Metals de México</div><div style="display:flex;gap:7px;flex-wrap:wrap"><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Detección de Incendio</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Control de Acceso</span></div></div></div></div><div style="padding:20px 24px;border:1px solid #1e1e1e;background:#0d0d0d;transition:border-color .2s" onmouseover="this.style.borderColor='#A20000'" onmouseout="this.style.borderColor='#1e1e1e'"><div style="display:flex;align-items:flex-start;gap:12px"><div style="width:7px;height:7px;border-radius:50%;background:#A20000;flex-shrink:0;margin-top:8px"></div><div style="flex:1"><div style="font-size:16px;font-weight:700;color:#ffffff;margin-bottom:10px">Hitachi Chemical Mexico</div><div style="display:flex;gap:7px;flex-wrap:wrap"><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Incendio</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Voceo</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Cableado</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Audio y Video</span></div></div></div></div><div style="padding:20px 24px;border:1px solid #1e1e1e;background:#0d0d0d;transition:border-color .2s" onmouseover="this.style.borderColor='#A20000'" onmouseout="this.style.borderColor='#1e1e1e'"><div style="display:flex;align-items:flex-start;gap:12px"><div style="width:7px;height:7px;border-radius:50%;background:#A20000;flex-shrink:0;margin-top:8px"></div><div style="flex:1"><div style="font-size:16px;font-weight:700;color:#ffffff;margin-bottom:10px">Panasonic Automotive Monterrey</div><div style="display:flex;gap:7px;flex-wrap:wrap"><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Incendio</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Cableado</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Control de Acceso</span></div></div></div></div><div style="padding:20px 24px;border:1px solid #1e1e1e;background:#0d0d0d;transition:border-color .2s" onmouseover="this.style.borderColor='#A20000'" onmouseout="this.style.borderColor='#1e1e1e'"><div style="display:flex;align-items:flex-start;gap:12px"><div style="width:7px;height:7px;border-radius:50%;background:#A20000;flex-shrink:0;margin-top:8px"></div><div style="flex:1"><div style="font-size:16px;font-weight:700;color:#ffffff;margin-bottom:10px">Hazama Ando · NGK Ceramics México</div><div style="display:flex;gap:7px;flex-wrap:wrap"><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Voceo</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Incendio</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Acceso</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Cableado</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">CCTV</span></div></div></div></div><div style="padding:20px 24px;border:1px solid #1e1e1e;background:#0d0d0d;transition:border-color .2s" onmouseover="this.style.borderColor='#A20000'" onmouseout="this.style.borderColor='#1e1e1e'"><div style="display:flex;align-items:flex-start;gap:12px"><div style="width:7px;height:7px;border-radius:50%;background:#A20000;flex-shrink:0;margin-top:8px"></div><div style="flex:1"><div style="font-size:16px;font-weight:700;color:#ffffff;margin-bottom:10px">Kawasaki Motores de México Monterrey</div><div style="display:flex;gap:7px;flex-wrap:wrap"><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Incendio</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">CCTV</span><span style="padding:4px 14px;background:#A20000;border:1px solid #A20000;font-size:10px;color:#ffffff;letter-spacing:1px;text-transform:uppercase;font-weight:700">Cableado</span></div></div></div></div></div></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CLIENTES — título más visible, carrusel más rápido -->
+<section id="clientes">
+  <div class="cli-header">
+    <div class="cli-title-row">
+      <div class="cli-line"></div>
+      <div class="cli-title">Nuestros Clientes</div>
+      <div class="cli-line"></div>
+    </div>
+    <span class="cli-diamond">◆</span>
+    <div class="cli-sub">Empresas líderes que confían en nuestras soluciones</div>
+  </div>
+  <div class="car-outer">
+  <div class="car-fl"></div>
+  <div class="car-fr"></div>
+<div style="overflow:hidden;width:100%;position:relative"><div style="position:absolute;left:0;top:0;bottom:0;width:120px;background:linear-gradient(to right,#0a0a0a,transparent);z-index:2;pointer-events:none"></div><div style="position:absolute;right:0;top:0;bottom:0;width:120px;background:linear-gradient(to left,#0a0a0a,transparent);z-index:2;pointer-events:none"></div><div style="display:flex;align-items:center;animation:scroll-left 20s linear infinite;width:max-content;padding:20px 0"><div style="flex:0 0 auto;padding:0 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-width:180px"><div style="height:112px;display:flex;align-items:center;justify-content:center"><img src="images/clientes/castle-metals.png" style="height:112px;width:auto;object-fit:contain;max-width:200px;background:rgba(20,20,20,0.0)"></div><div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:1px;text-align:center;white-space:nowrap">Castle Metals</div></div><div style="flex:0 0 auto;padding:0 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-width:180px"><div style="height:112px;display:flex;align-items:center;justify-content:center"><img src="images/clientes/servilamina.png" style="height:112px;width:auto;object-fit:contain;max-width:200px;"></div><div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:1px;text-align:center;white-space:nowrap">Servilamina</div></div><div style="flex:0 0 auto;padding:0 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-width:180px"><div style="height:112px;display:flex;align-items:center;justify-content:center"><img src="images/clientes/hazama-ando.png" style="height:112px;width:auto;object-fit:contain;max-width:200px;background:rgba(20,20,20,0.0)"></div><div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:1px;text-align:center;white-space:nowrap">Hazama Ando</div></div><div style="flex:0 0 auto;padding:0 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-width:180px"><div style="height:112px;display:flex;align-items:center;justify-content:center"><img src="images/clientes/wieland.png" style="height:112px;width:auto;object-fit:contain;max-width:200px;"></div><div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:1px;text-align:center;white-space:nowrap">Wieland</div></div><div style="flex:0 0 auto;padding:0 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-width:180px"><div style="height:112px;display:flex;align-items:center;justify-content:center"><img src="images/clientes/konoike.png" style="height:112px;width:auto;object-fit:contain;max-width:200px;"></div><div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:1px;text-align:center;white-space:nowrap">Konoike</div></div><div style="flex:0 0 auto;padding:0 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-width:180px"><div style="height:112px;display:flex;align-items:center;justify-content:center"><img src="images/clientes/ast.png" style="height:112px;width:auto;object-fit:contain;max-width:200px;background:rgba(20,20,20,0.0)"></div><div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:1px;text-align:center;white-space:nowrap">AST</div></div><div style="flex:0 0 auto;padding:0 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-width:180px"><div style="height:112px;display:flex;align-items:center;justify-content:center"><img src="images/clientes/kawasaki.png" style="height:112px;width:auto;object-fit:contain;max-width:200px;background:rgba(20,20,20,0.0)"></div><div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:1px;text-align:center;white-space:nowrap">Kawasaki</div></div><div style="flex:0 0 auto;padding:0 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-width:180px"><div style="height:112px;display:flex;align-items:center;justify-content:center"><img src="images/clientes/castle-metals.png" style="height:112px;width:auto;object-fit:contain;max-width:200px;background:rgba(20,20,20,0.0)"></div><div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:1px;text-align:center;white-space:nowrap">Castle Metals</div></div><div style="flex:0 0 auto;padding:0 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-width:180px"><div style="height:112px;display:flex;align-items:center;justify-content:center"><img src="images/clientes/servilamina.png" style="height:112px;width:auto;object-fit:contain;max-width:200px;"></div><div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:1px;text-align:center;white-space:nowrap">Servilamina</div></div><div style="flex:0 0 auto;padding:0 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-width:180px"><div style="height:112px;display:flex;align-items:center;justify-content:center"><img src="images/clientes/hazama-ando.png" style="height:112px;width:auto;object-fit:contain;max-width:200px;background:rgba(20,20,20,0.0)"></div><div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:1px;text-align:center;white-space:nowrap">Hazama Ando</div></div><div style="flex:0 0 auto;padding:0 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-width:180px"><div style="height:112px;display:flex;align-items:center;justify-content:center"><img src="images/clientes/wieland.png" style="height:112px;width:auto;object-fit:contain;max-width:200px;"></div><div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:1px;text-align:center;white-space:nowrap">Wieland</div></div><div style="flex:0 0 auto;padding:0 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-width:180px"><div style="height:112px;display:flex;align-items:center;justify-content:center"><img src="images/clientes/konoike.png" style="height:112px;width:auto;object-fit:contain;max-width:200px;"></div><div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:1px;text-align:center;white-space:nowrap">Konoike</div></div><div style="flex:0 0 auto;padding:0 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-width:180px"><div style="height:112px;display:flex;align-items:center;justify-content:center"><img src="images/clientes/ast.png" style="height:112px;width:auto;object-fit:contain;max-width:200px;background:rgba(20,20,20,0.0)"></div><div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:1px;text-align:center;white-space:nowrap">AST</div></div><div style="flex:0 0 auto;padding:0 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-width:180px"><div style="height:112px;display:flex;align-items:center;justify-content:center"><img src="images/clientes/kawasaki.png" style="height:112px;width:auto;object-fit:contain;max-width:200px;background:rgba(20,20,20,0.0)"></div><div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:1px;text-align:center;white-space:nowrap">Kawasaki</div></div></div></div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACTO -->
+<section id="contacto" class="sec">
+  <div class="sec-inner">
+    <div class="sec-tag">Contacto</div>
+    <h2 class="sec-title">HABLEMOS DE<br><span>SU PROYECTO</span></h2>
+    <div class="cnt-grid">
+      <div>
+        <p class="sec-desc" style="margin-bottom:32px">
+          Cuéntenos qué necesita proteger y le diseñamos la solución más adecuada.
+          Sin costo y sin compromiso.
+        </p>
+        <div>
+          <div class="ci">
+            <div class="ci-icon">📞</div>
+            <div>
+              <div class="ci-lbl">Teléfono / WhatsApp</div>
+              <div class="ci-val">(81) 1976.4178</div>
+              <div class="ci-sub">Lunes a Viernes · 8:00 – 18:00 hrs</div>
+            </div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon">✉️</div>
+            <div>
+              <div class="ci-lbl">Correo electrónico</div>
+              <div class="ci-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b5c6ccc6c1d0d8d9d4cfd4f5d2d8d4dcd99bd6dad8">[email&#160;protected]</a></div>
+              <div class="ci-sub">Respondemos en menos de 24 horas</div>
+            </div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon">📍</div>
+            <div>
+              <div class="ci-lbl">Dirección</div>
+              <div class="ci-val">Cedro 616, Arboledas de Santa Rosa</div>
+              <div class="ci-sub">Apodaca, Nuevo León C.P. 66614</div>
+            </div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon">👤</div>
+            <div>
+              <div class="ci-lbl">Contacto directo</div>
+              <div class="ci-val">Ing. Miguel García Lázaro</div>
+              <div class="ci-sub">Director General</div>
+            </div>
+          </div>
+        </div>
+        <button class="wa-big"
+          onclick="window.open('https://wa.me/5218119764178?text=Hola%20Systemlaza%2C%20me%20gustar%C3%ADa%20obtener%20una%20cotizaci%C3%B3n.','_blank')">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Escribir por WhatsApp
+        </button>
+      </div>
+      <div>
+        <div class="form-box">
+          <div style="font-size:17px;letter-spacing:3px;color:#ffffff;text-transform:uppercase;font-weight:800;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #A20000">Solicitar cotización</div>
+          <form id="cForm" onsubmit="sendForm(event)">
+            <div class="frow">
+              <div>
+                <label class="flbl">Empresa *</label>
+                <input type="text" class="fin" name="empresa" placeholder="Nombre de su empresa" required>
+              </div>
+              <div>
+                <label class="flbl">Contacto *</label>
+                <input type="text" class="fin" name="nombre" placeholder="Su nombre completo" required>
+              </div>
+            </div>
+            <div class="frow">
+              <div>
+                <label class="flbl">Teléfono *</label>
+                <input type="tel" class="fin" name="telefono" placeholder="81 0000 0000" required>
+              </div>
+              <div>
+                <label class="flbl">Correo *</label>
+                <input type="email" class="fin" name="email" placeholder="correo@empresa.com" required>
+              </div>
+            </div>
+            <div class="ffull">
+              <label class="flbl">Ciudad / Estado</label>
+              <input type="text" class="fin" name="ciudad" placeholder="Ej. Monterrey, Nuevo León">
+            </div>
+            <div class="ffull">
+              <label class="flbl">Servicio de interés *</label>
+              <select class="fin" name="servicio" required>
+                <option value="">Seleccione un servicio</option>
+                <option>Detección de Incendio</option>
+                <option>Videovigilancia CCTV</option>
+                <option>Control de Acceso Personal y Vehicular</option>
+                <option>Voceo y Avisos Públicos</option>
+                <option>Sistema de Alarma Perimetral</option>
+                <option>Cableado Estructurado</option>
+                <option>Solución Integral</option>
+              </select>
+            </div>
+            <div class="ffull">
+              <label class="flbl">Descripción del proyecto</label>
+              <textarea class="fin" name="mensaje" rows="4"
+                placeholder="Cuéntenos sobre su proyecto..."></textarea>
+            </div>
+            <button type="submit" class="fsub" id="fBtn">Enviar Solicitud</button>
+          </form>
+          <div id="fOk" style="display:none;margin-top:14px;padding:14px;
+            background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.3);
+            font-size:12px;color:#4ade80;text-align:center;letter-spacing:1px">
+            ✅ Solicitud enviada. Le contactaremos en menos de 24 horas.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta">
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <div class="cta-lbl">— Contáctenos hoy —</div>
+    <h2 class="cta-title">¿Listo para elevar<br>la seguridad de<br><span>su empresa?</span></h2>
+    <p class="cta-desc">Diseñamos soluciones de seguridad para operaciones modernas y de misión crítica.</p>
+    <div class="cta-btns">
+      <button class="cta-wa"
+        onclick="window.open('https://wa.me/5218119764178?text=Hola%20Systemlaza%2C%20quiero%20elevar%20la%20seguridad%20de%20mi%20empresa.','_blank')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Hablar por WhatsApp
+      </button>
+      <button class="cta-sec"
+        onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">
+        Solicitar cotización
+      </button>
+    </div>
+    <p style="margin-top:26px;text-align:center;font-size:14px;letter-spacing:1px;color:#bdbdbd">Cotización personalizada sin compromiso</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">SYSTEMLAZA</div>
+        <div class="foot-sub">S.A. de C.V. · Security Systems</div>
+        <div class="foot-desc">Especialistas en sistemas especiales de seguridad industrial.
+          Más de 10 años protegiendo las operaciones más exigentes de México.</div>
+      </div>
+      <div>
+        <div class="foot-col-t">Navegación</div>
+        <div class="foot-links">
+          <a href="#empresa">Empresa</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#proyectos">Proyectos</a>
+          <a href="#trabajos">Trabajos realizados</a>
+          <a href="#clientes">Clientes</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </div>
+      <div>
+        <div class="foot-col-t">Contacto</div>
+        <div class="foot-ci"><span>📞</span><span>(81) 1976.4178</span></div>
+        <div class="foot-ci"><span>✉️</span><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f3808a8087969e9f928992b3949e929a9fdd909c9e">[email&#160;protected]</a></span></div>
+        <div class="foot-ci"><span>📍</span><span>Apodaca, Nuevo León</span></div>
+        <div class="foot-ci"><span>🌐</span><span>systemlaza.com.mx</span></div>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <div class="foot-copy">© 2026 Systemlaza S.A. de C.V. · Todos los derechos reservados</div>
+      <div class="foot-legal">RFC: SYS151123T3A · Apodaca, Nuevo León México</div>
+    </div>
+  </div>
+</footer>
+
+<!-- WA FLOAT -->
+<a id="wa-float"
+  href="https://wa.me/5218119764178?text=Hola%20Systemlaza%2C%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n."
+  target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+<div id="btop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const nb = document.getElementById('navbar');
+const bt = document.getElementById('btop');
+window.addEventListener('scroll', () => {
+  nb.classList.toggle('scrolled', window.scrollY > 80);
+  bt.classList.toggle('vis', window.scrollY > 400);
+});
+
+// Active nav link highlight
+const sects = document.querySelectorAll('section[id]');
+const lnks  = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sects.forEach(s => { if(window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  lnks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#'+cur ? '#A20000' : '#ffffff';
+  });
+});
+
+// Form → WhatsApp
+function sendForm(e) {
+  e.preventDefault();
+  const d  = new FormData(e.target);
+  const msg = encodeURIComponent(
+    'Hola Systemlaza, le contacto desde su página web.\n\n' +
+    '*Empresa:* '  + (d.get('empresa') ||'') + '\n' +
+    '*Contacto:* ' + (d.get('nombre')  ||'') + '\n' +
+    '*Teléfono:* ' + (d.get('telefono')||'') + '\n' +
+    '*Servicio:* ' + (d.get('servicio')||'') + '\n' +
+    '*Mensaje:* '  + (d.get('mensaje') ||'')
+  );
+  document.getElementById('fOk').style.display = 'block';
+  const btn = document.getElementById('fBtn');
+  btn.textContent = '✅ Enviado correctamente';
+  btn.disabled = true;
+  setTimeout(() => window.open('https://wa.me/5218119764178?text='+msg,'_blank'), 800);
+}
+
+// Smooth scroll anchors
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t) t.scrollIntoView({behavior:'smooth'});
+  });
+});
+
+
+// Project sliders state
+
+
+
+const sliderState={};
+function initSlider(id,total,ms){
+  sliderState[id]={cur:0,total:total};
+  setInterval(()=>nextSlide(id),ms);
+}
+function showSlide(id,idx){
+  const s=sliderState[id];
+  document.querySelectorAll('.slide-'+id).forEach((el,i)=>{el.style.display=i===idx?'block':'none';});
+  for(let i=0;i<s.total;i++){
+    const d=document.getElementById('dot-'+id+'-'+i);
+    if(d){d.style.width=i===idx?'10px':'7px';d.style.height=i===idx?'10px':'7px';
+    d.style.background=i===idx?'#fff':'rgba(255,255,255,0.4)';}
+  }
+  const c=document.getElementById('count-'+id);
+  if(c)c.textContent=(idx+1)+' / '+s.total;
+  s.cur=idx;
+}
+function nextSlide(id){const s=sliderState[id];showSlide(id,(s.cur+1)%s.total);}
+function prevSlide(id){const s=sliderState[id];showSlide(id,(s.cur-1+s.total)%s.total);}
+function goSlide(id,i){showSlide(id,i);}
+
+window.addEventListener('DOMContentLoaded',()=>{
+  initSlider('kawasaki_motores_de_mexico',6,2500);
+  initSlider('panasonic_mty',8,2500);
+  initSlider('katsushiro',7,2500);
+});
+
+</script>
+</body>
+</html>
