@@ -47,6 +47,31 @@ button{cursor:pointer;font-family:'Inter',sans-serif}
   transition:background .2s;white-space:nowrap}
 .nav-cta:hover{background:#990000}
 
+/* HAMBURGUESA */
+#nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:36px;height:36px;background:transparent;border:none;cursor:pointer;
+  padding:0;margin-left:14px;z-index:201}
+#nav-burger span{display:block;width:24px;height:2px;background:#fff;
+  transition:all .25s ease;border-radius:1px}
+#nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+#nav-burger.open span:nth-child(2){opacity:0}
+#nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* MENU MOVIL PANTALLA COMPLETA */
+#mobile-menu{position:fixed;inset:0;background:rgba(5,5,5,0.98);
+  backdrop-filter:blur(10px);z-index:200;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:36px;
+  opacity:0;visibility:hidden;transition:opacity .3s ease}
+#mobile-menu.open{opacity:1;visibility:visible}
+.mm-links{list-style:none;display:flex;flex-direction:column;align-items:center;gap:28px}
+.mm-links a{font-size:22px;letter-spacing:2px;color:#fff;text-transform:uppercase;
+  font-weight:700;transition:color .2s}
+.mm-links a:hover{color:#A20000}
+.mm-cta{background:#A20000;color:#fff;padding:14px 36px;font-size:13px;
+  font-weight:700;letter-spacing:1px;text-transform:uppercase;border:none;
+  cursor:pointer;transition:background .2s}
+.mm-cta:hover{background:#990000}
+
 /* HERO */
 #hero{position:relative;height:100vh;min-height:700px;overflow:hidden;
   display:flex;align-items:center;justify-content:center}
@@ -281,6 +306,8 @@ footer{background:#050505;border-top:1px solid #1a1a1a;padding:40px 32px 24px}
 
 @media(max-width:900px){
   .nav-links{display:none}
+  .nav-cta{display:none}
+  #nav-burger{display:flex}
   .hero-logo-left,.hero-aniv-right{width:200px}
   .hero-logo-left img{width:180px;height:180px}
   .hero-aniv-right img{width:160px;height:160px}
@@ -290,12 +317,21 @@ footer{background:#050505;border-top:1px solid #1a1a1a;padding:40px 32px 24px}
   .proy-cards{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:600px){
-  .hero-logo-left,.hero-aniv-right{display:none}
-  .hero-content{padding:0 20px}
+  .hero-logo-left,.hero-aniv-right{width:100px}
+  .hero-logo-left img{width:80px;height:80px}
+  .hero-aniv-right img{width:72px;height:72px}
+  .hero-content{padding:0 105px}
+  .hero-eyebrow{font-size:9px;letter-spacing:3px}
   .sec{padding:56px 20px}
   .nav-inner{padding:0 20px}
   .proy-cards{grid-template-columns:1fr}
   .trab-cards{grid-template-columns:1fr}
+}
+@media(max-width:380px){
+  .hero-logo-left,.hero-aniv-right{width:64px}
+  .hero-logo-left img{width:52px;height:52px}
+  .hero-aniv-right img{width:46px;height:46px}
+  .hero-content{padding:0 68px}
 }
 </style>
 </head>
@@ -338,9 +374,27 @@ footer{background:#050505;border-top:1px solid #1a1a1a;padding:40px 32px 24px}
         onclick="window.open('https://wa.me/5218119764178?text=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20una%20cotizaci%C3%B3n','_blank')">
         Cotizar Ahora
       </button>
+      <button id="nav-burger" aria-label="Abrir menú" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
+
+<!-- MENU MOVIL PANTALLA COMPLETA -->
+<div id="mobile-menu">
+  <ul class="mm-links">
+    <li><a href="#empresa" onclick="closeMobileMenu()">Empresa</a></li>
+    <li><a href="#servicios" onclick="closeMobileMenu()">Servicios</a></li>
+    <li><a href="#proyectos" onclick="closeMobileMenu()">Proyectos</a></li>
+    <li><a href="#clientes" onclick="closeMobileMenu()">Clientes</a></li>
+    <li><a href="#contacto" onclick="closeMobileMenu()">Contacto</a></li>
+  </ul>
+  <button class="mm-cta"
+    onclick="window.open('https://wa.me/5218119764178?text=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20una%20cotizaci%C3%B3n','_blank')">
+    Cotizar Ahora
+  </button>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -671,6 +725,20 @@ window.addEventListener('scroll', () => {
   nb.classList.toggle('scrolled', window.scrollY > 80);
   bt.classList.toggle('vis', window.scrollY > 400);
 });
+
+// Mobile menu toggle
+const mmBurger = document.getElementById('nav-burger');
+const mmMenu = document.getElementById('mobile-menu');
+function toggleMobileMenu(){
+  mmBurger.classList.toggle('open');
+  mmMenu.classList.toggle('open');
+  document.body.style.overflow = mmMenu.classList.contains('open') ? 'hidden' : '';
+}
+function closeMobileMenu(){
+  mmBurger.classList.remove('open');
+  mmMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}
 
 // Active nav link highlight
 const sects = document.querySelectorAll('section[id]');
