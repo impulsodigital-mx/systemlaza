@@ -114,6 +114,21 @@ button{cursor:pointer;font-family:'Inter',sans-serif}
   filter:drop-shadow(0 4px 28px rgba(0,0,0,0.9));
 }
 
+/* Fila de logos en móvil/tablet — oculta en desktop */
+.hero-logos-mobile{
+  display:none;
+  position:relative;z-index:2;
+  align-items:center;justify-content:center;
+  gap:48px;margin-bottom:18px;
+  animation:fadeUp .8s ease both;
+}
+.hero-logos-mobile img:first-child{
+  filter:drop-shadow(0 0 40px rgba(162,0,0,0.45)) drop-shadow(0 6px 24px rgba(0,0,0,0.8));
+}
+.hero-logos-mobile img:last-child{
+  filter:drop-shadow(0 4px 20px rgba(0,0,0,0.9));
+}
+
 .hero-content{
   position:relative;z-index:2;text-align:center;
   padding:0 360px;width:100%;animation:fadeUp .8s ease .1s both;margin-top:40px;
@@ -308,19 +323,19 @@ footer{background:#050505;border-top:1px solid #1a1a1a;padding:40px 32px 24px}
   .nav-links{display:none}
   .nav-cta{display:none}
   #nav-burger{display:flex}
-  .hero-logo-left,.hero-aniv-right{width:200px}
-  .hero-logo-left img{width:180px;height:180px}
-  .hero-aniv-right img{width:160px;height:160px}
-  .hero-content{padding:0 220px}
+  #hero{flex-direction:column}
+  .hero-logo-left,.hero-aniv-right{display:none}
+  .hero-logos-mobile{display:flex}
+  .hero-logos-mobile img{width:140px;height:140px;object-fit:contain}
+  .hero-content{padding:0 40px}
   .empresa-mv,.serv-layout,.cnt-grid,.foot-top,.trab-grid{grid-template-columns:1fr}
   .proy-grid{grid-template-columns:1fr}
   .proy-cards{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:600px){
-  .hero-logo-left,.hero-aniv-right{width:100px}
-  .hero-logo-left img{width:80px;height:80px}
-  .hero-aniv-right img{width:72px;height:72px}
-  .hero-content{padding:0 105px}
+  .hero-logos-mobile{gap:28px;margin-bottom:14px}
+  .hero-logos-mobile img{width:90px;height:90px}
+  .hero-content{padding:0 24px}
   .hero-eyebrow{font-size:9px;letter-spacing:3px}
   .sec{padding:56px 20px}
   .nav-inner{padding:0 20px}
@@ -328,10 +343,9 @@ footer{background:#050505;border-top:1px solid #1a1a1a;padding:40px 32px 24px}
   .trab-cards{grid-template-columns:1fr}
 }
 @media(max-width:380px){
-  .hero-logo-left,.hero-aniv-right{width:64px}
-  .hero-logo-left img{width:52px;height:52px}
-  .hero-aniv-right img{width:46px;height:46px}
-  .hero-content{padding:0 68px}
+  .hero-logos-mobile{gap:18px}
+  .hero-logos-mobile img{width:68px;height:68px}
+  .hero-content{padding:0 18px}
 }
 </style>
 </head>
@@ -409,6 +423,12 @@ footer{background:#050505;border-top:1px solid #1a1a1a;padding:40px 32px 24px}
 
   <!-- Sello aniversario — derecha centrado -->
   <div class="hero-aniv-right">
+    <img src="images/aniversario.png" alt="10 Aniversario Systemlaza">
+  </div>
+
+  <!-- Fila de logos solo móvil/tablet — arriba del título -->
+  <div class="hero-logos-mobile">
+    <img src="images/logo.png" alt="Logo Systemlaza">
     <img src="images/aniversario.png" alt="10 Aniversario Systemlaza">
   </div>
 
